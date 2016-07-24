@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.selvia.quiz20.game.ReadyGameActivity">
+
+        <LinearLayout
+            android:id="@+id/limaster"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <Button
+                android:id="@+id/btnGiveLike"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_base"
+                android:text="좋아요\n선물하기"
+                android:textColor="@drawable/text_in_button"
+                android:textSize="15sp"/>
+
+            <Button
+                android:id="@+id/btnAddFriend"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_base"
+                android:text="내 친구에\n추가하기"
+                android:textColor="@drawable/text_in_button"
+                android:textSize="15sp"/>
+
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_base"
+                android:text="시작"
+                android:textColor="@drawable/text_in_button"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btnSwitch"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_base"
+                android:text="술래\n넘기기"
+                android:textColor="@drawable/text_in_button"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/imageView_p1"
+                android:src="@drawable/ic_menu_camera"
+                android:layout_above="@+id/textView2"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/imageView_p2"
+                android:src="@drawable/ic_menu_camera"
+                android:layout_below="@+id/textView2"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="VS"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/textView2"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+        </RelativeLayout>
+
+</LinearLayout>
