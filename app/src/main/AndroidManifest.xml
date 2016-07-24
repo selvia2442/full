@@ -35,7 +35,7 @@
             android:configChanges="orientation|keyboardHidden|keyboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustUnspecified|adjustPan" />
-        <activity android:name="com.selvia.quiz20.PopupActivity" />
+        <activity android:name="com.selvia.quiz20.PopupActivity"/>
         <activity android:name="com.selvia.quiz20.game.ReadyGameActivity" />
         <activity android:name="com.selvia.quiz20.game.StartGameActivity"></activity>
     </application>

@@ -15,6 +15,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
 /**
@@ -78,9 +79,9 @@ public class UDPRun implements Runnable {
                 InitUDP();
                 Log.e("Recv from Server", Global.server_domain_udp);
 
-                byte[] buffer = new byte[4096];
+                byte[] buffer = new byte[1024];
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length, host, SERVERPORT);
-                socket.receive(packet);
+                    socket.receive(packet);
 
                 uData = new String(packet.getData()).trim();
                 Log.e("Recv from Server", uData);

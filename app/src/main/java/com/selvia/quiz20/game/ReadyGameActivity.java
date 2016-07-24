@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -82,6 +83,7 @@ public class ReadyGameActivity extends AppCompatActivity {
                 //알람
             }
         });
+        btnGiveLike.setVisibility(View.GONE);
 
         Button btnAddFriend = (Button) findViewById( R.id.btnAddFriend );
         btnAddFriend.setOnClickListener(new View.OnClickListener() {
@@ -90,16 +92,13 @@ public class ReadyGameActivity extends AppCompatActivity {
                 //알람
             }
         });
+        btnAddFriend.setVisibility(View.GONE);
 
         btnStart = (Button) findViewById( R.id.btnStart );
-        btnStart.setVisibility(View.GONE);
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(tagger_flag)
-                    createDlgGetAnwser().show();
-                else
-                    UDPRun.SendtoServer(otherPlayer.user_id, "READY", "0", "");
+                createDlgGetAnwser().show();
             }
         });
 
@@ -121,10 +120,8 @@ public class ReadyGameActivity extends AppCompatActivity {
 
         if(!master_flag) {
             aq.id( imageView_p2 ).image( otherPlayer.profileImgUrl );
-            btnStart.setVisibility(View.INVISIBLE);
-        } else {
-            btnStart.setVisibility(View.VISIBLE);
         }
+        btnStart.setVisibility(View.INVISIBLE);
 
         set_tagger();
     }
@@ -154,6 +151,7 @@ public class ReadyGameActivity extends AppCompatActivity {
         View v = this.getLayoutInflater().inflate(R.layout.dlg_answer, null);
         final EditText editAnswer = (EditText) v.findViewById(R.id.editAnswer);
 
+        dial.setView(v);
         dial.setButton(DialogInterface.BUTTON_NEGATIVE, "취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -198,6 +196,7 @@ public class ReadyGameActivity extends AppCompatActivity {
                         msg.what = RET_START_A;
                     }
                 } catch (Exception e) {
+                    Log.e("game_start","Exception",e);
                     msg.what = RET_ERROR;
                     msg.obj = e.getLocalizedMessage() + "";
                 }
@@ -335,7 +334,6 @@ public class ReadyGameActivity extends AppCompatActivity {
                     client.addParam("user_id", Global.user.user_id);
                     client.addParam("room_no", roomNo+"");
                     if(master_flag) {
-                        UDPRun.SendtoServer(otherPlayer.user_id, "ROOM", "1", "");
                         client.addParam("master_flag", "y");
                     } else {
                         client.addParam("master_flag", "n");
@@ -351,6 +349,9 @@ public class ReadyGameActivity extends AppCompatActivity {
                     msg.what = RET_ERROR;
                     msg.obj = e.getLocalizedMessage() + "";
                 }
+
+                if(master_flag && otherPlayer != null)
+                    UDPRun.SendtoServer(otherPlayer.user_id, "ROOM", "1", "");
                 resultHandler.sendMessage(msg);
             }
         });

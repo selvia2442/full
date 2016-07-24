@@ -29,10 +29,10 @@ public class Global {
 
 
     // 기본 URL
-    public static String base_url = server_url + "quiz20/mobile/";
+    public static String base_url = server_url + "Battle20q/mobile/";
     public static String ver_url = "1_0_0/";
     public static String img_url = server_url + "/";
-    public static String url_image_upload = server_url + "quiz20/ImageUpload.jsp"; // 이미지는//
+    public static String url_image_upload = server_url + "Battle20q/ImageUpload.jsp"; // 이미지는//
 
 
     public static String url_longin_in_db           = base_url + ver_url + "LoginInDB.jsp";

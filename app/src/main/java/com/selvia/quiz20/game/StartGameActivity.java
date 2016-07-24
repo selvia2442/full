@@ -41,6 +41,7 @@ public class StartGameActivity extends AppCompatActivity {
     public static ResultHandler resultHandler;
     DataContainer contQuit;
 
+    TextView textAnswer;
     LinearLayout roComm, roYesno;
     ArrayList<ItemChat> arrayChat = new ArrayList<ItemChat>();
     AdptChat adptChat;
@@ -84,7 +85,7 @@ public class StartGameActivity extends AppCompatActivity {
         roComm = (LinearLayout) findViewById(R.id.roComm);
         roYesno = (LinearLayout) findViewById(R.id.roYesno);
 
-        TextView textAnswer = (TextView) findViewById(R.id.textAnswer);
+        textAnswer = (TextView) findViewById(R.id.textAnswer);
         textAnswer.setText("정답 : "+answer);
         textCount = (TextView) findViewById(R.id.textCount);
         textCount.setText(count_down+"");
@@ -102,13 +103,14 @@ public class StartGameActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     String text = editContents.getText().toString();
-                    roComm.setVisibility(View.GONE);
                     UDPRun.SendtoServer(otherPlayer.user_id, "GAME", "0", text);
 
                     arrayChat.add(new ItemChat(context, true, text, Global.user.profileImgUrl));
                     adptChat.notifyDataSetChanged();
 
                     if(final_text) {
+                        roComm.setVisibility(View.GONE);
+                        textAnswer.setVisibility(View.VISIBLE);
                         if(answer.equals(text)) {
                             UDPRun.SendtoServer(Global.user.user_id, "GAME", "5", "승리");
                             UDPRun.SendtoServer(otherPlayer.user_id, "GAME", "6", "패배");
@@ -183,7 +185,7 @@ public class StartGameActivity extends AppCompatActivity {
 
     public void add_text(String data)
     {
-        arrayChat.add(new ItemChat(context, true, data, otherPlayer.profileImgUrl));
+        arrayChat.add(new ItemChat(context, false, data, otherPlayer.profileImgUrl));
         adptChat.notifyDataSetChanged();
 
         if(!tagger_flag) {
